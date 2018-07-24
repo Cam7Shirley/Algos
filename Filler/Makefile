@@ -6,7 +6,7 @@
 #    By: cshirley <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/23 09:16:13 by cshirley          #+#    #+#              #
-#    Updated: 2018/07/23 13:32:51 by cshirley         ###   ########.fr        #
+#    Updated: 2018/07/24 08:09:17 by cshirley         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ INCLUDES = filler.h
 all: $(NAME)
 
 $(NAME):
-	gcc $(FLAGS) -o $(NAME) $(SRCS) $(INCLUDES)
-	gcc -I. -L./libft -lft
+	gcc -o $(NAME) $(FLAGS) $(SRCS)
+	gcc -I./libft -L./libft -lft
 
 clean:
 	rm -f *.o

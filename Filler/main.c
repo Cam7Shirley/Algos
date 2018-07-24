@@ -6,7 +6,7 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 11:56:13 by cshirley          #+#    #+#             */
-/*   Updated: 2018/07/23 13:53:22 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/07/24 09:47:58 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,25 @@
 
 int	main(int argc, char **argv)
 {
-	char	**map;
-	char	**size;
 	char	*line;
+	char	*map[100];
+	int		count;
 	int		fd;
 	int		ret;
-	int		row;
-	int		col;
 
-	fd = open(argv[1], O_RDONLY);
-	ret = get_next_line(fd, &line);
-	size = ft_strsplit(line, ' ');
-	row = ft_atoi(size[1]);
-	col = ft_atoi(size[2]);
-	*map = (char *)(malloc(row * sizeof(char *)));
-	**map = (char)(malloc(col * sizeof(char)));
-	ret = get_next_line(fd, &line);
-	while (ret == 1)
+	if (argc == 2)
 	{
-		ret = get_next_line(fd, &line);
-		while (line[col] != '\0')
+		fd = open(argv[1], O_RDONLY, 0700);
+		count = 0;
+		while ((ret = get_next_line(fd, &line)) == 1)
 		{
-			map[row][col] = line[col];
-			ft_putchar(map[row][col]);
-			col++;
+			map[count] = ft_strnew(0);
+			map[count] = ft_strjoin(map[count], line);
+			ft_putendl(map[count]);
+			count++;
 		}
-		ft_putchar('\n');
-		col = 0;
-		row++;
 	}
+	else
+		ft_putendl("Invalid number of arguments.");
 	return (0);
 }
