@@ -16,9 +16,10 @@ int	main(int argc, char **argv)
 {
 	char	*line;
 	char	*map[100];
-	int		count;
-	int		fd;
-	int		ret;
+	int	count;
+	int	fd;
+	int	ret;
+	int	player;
 
 	if (argc == 2)
 	{
@@ -28,9 +29,11 @@ int	main(int argc, char **argv)
 		{
 			map[count] = ft_strnew(0);
 			map[count] = ft_strjoin(map[count], line);
-			ft_putendl(map[count]);
 			count++;
 		}
+		player = get_player(map, "carli");
+		ft_putnbr(player);
+		ft_putchar('\n');
 	}
 	else
 		ft_putendl("Invalid number of arguments.");

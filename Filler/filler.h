@@ -15,4 +15,6 @@
 # include "./libft/libft.h"
 # include <fcntl.h>
 
+int	get_player(char **m, char *p);
+
 #endif
