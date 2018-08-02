@@ -1,40 +1,10 @@
 #include "filler.h"
 
-int	get_player(char **m, char *p)
+token	new_token(token *t, unsigned int a, unsigned int b)
 {
-	char	*temp;
-	char	*line;
-	char	*play;
-	int		player;
-	int		index;
-
-	index = 0;
-	player = 0;
-	temp = ft_strnew(ft_strlen(p));
-	while (m[index])
-	{
-		line = ft_strnew(0);
-		line = ft_strjoin(line, m[index]);
-		if (line[0] == '$')
-		{
-			if ((play = ft_strstr(line, "p1")) && (temp = ft_strstr(line, p)))
-				player = 1;
-			else if ((play = ft_strstr(line, "p2")) && (temp = ft_strstr(line, p)))
-				player = 2;
-		}
-		if (player != 0)
-			return (player);
-		index++;
-	}
-	return (player);
-}
-
-int		get_row(char **m, int p)
-{
-}
-
-int		get_col(char **m, int r, int p)
-{
+	t->x = a;
+	t->y = b;
+	return (*t);
 }
 
 char	**fill_token(char **m, int x, int y, int i)
@@ -63,20 +33,17 @@ char	**fill_token(char **m, int x, int y, int i)
 	return (token);
 }
 
-char	**get_token(char **m)
+token	get_token(char **m)
 {
+	token	tkn;
 	char	*line;
 	char	**temp;
-	char	**token;
 	int		index;
 	int		i;
-	int		x;
-	int		y;
 
+	tkn = new_token(0, 0);
 	index = 0;
 	i = 0;
-	x = 0;
-	y = 0;
 	while (m[index])
 	{
 		line = ft_strnew(0);
@@ -84,15 +51,15 @@ char	**get_token(char **m)
 		if (line[0] == 'P' && (line = ft_strstr(line, "Piece")))
 		{
 			temp = ft_strsplit(line, ' ');
-			x = ft_atoi(temp[1]);
-			y = ft_atoi(temp[2]);
+			tkn.x = ft_atoi(temp[1]);
+			tkn.y = ft_atoi(temp[2]);
 		}
-		if (x == 0 && y == 0)
+		if (tkn.x == 0 && tkn.y == 0)
 			index++;
 		else
 			break ;
 	}
 	index++;
-	token = fill_token(m, x, y, index);
-	return (token);
+	tkn.piece = fill_token(m, tkn.x, tkn.y, index);
+	return (tkn);
 }
