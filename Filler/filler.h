@@ -6,7 +6,7 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 13:29:59 by cshirley          #+#    #+#             */
-/*   Updated: 2018/08/02 14:22:05 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/08/06 11:15:48 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,14 @@ typedef struct		s_token
 }					token;
 
 token	get_token(char **m);
-token	new_token(token t, unsigned int a, unsigned int b);
+token	new_token(token *t, unsigned int a, unsigned int b);
+int		check_valid(char **m, token *t);
 int		get_player(char **m, char *p);
 char	**fill_token(char **m, int x, int y, int i);
+char	**store_map(char **file);
+char	*find_start_pos(char **m, char c);
+void	overwrite_prev(char c);
+void	get_x_y(char *l, unsigned int *x, unsigned int *y);
+void	store_piece(char *l, token *t, int *i);
 
 #endif

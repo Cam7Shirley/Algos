@@ -6,7 +6,7 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 11:56:13 by cshirley          #+#    #+#             */
-/*   Updated: 2018/08/02 14:22:19 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/08/06 11:04:25 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int	main(int argc, char **argv)
 {
 	char	*line;
-	char	*map[100];
-	char	**token;
-	int		row;
-	int		col;
+	char	*file[100];
+	char	**map;
+	token	tkn;
+	int		ix;
 	int		count;
 	int		index;
 	int		fd;
@@ -30,16 +30,21 @@ int	main(int argc, char **argv)
 		fd = open(argv[1], O_RDONLY, 0700);
 		count = 0;
 		index = 0;
+		ix = 0;
 		while ((ret = get_next_line(fd, &line)) == 1)
 		{
-			map[count] = ft_strnew(0);
-			map[count] = ft_strjoin(map[count], line);
+			file[count] = ft_strnew(0);
+			file[count] = ft_strjoin(file[count], line);
 			count++;
 		}
-		player = get_player(map, "abanlin");
-		token = get_token(map);
-		row = get_row(map, player);
-		col = get_col(map, row, player);
+		map = store_map(file);
+		while (map[ix])
+		{
+			ft_putendl(map[ix]);
+			ix++;
+		}
+		player = get_player(file, "abanlin");
+		tkn = get_token(file);
 		ft_putchar('\n');
 	}
 	else
