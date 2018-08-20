@@ -6,7 +6,7 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 13:29:59 by cshirley          #+#    #+#             */
-/*   Updated: 2018/08/06 11:15:48 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/08/20 12:37:26 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,28 @@ typedef struct		s_token
 	char			**piece;
 	unsigned int	x;
 	unsigned int	y;
-}					token;
+}					t_token;
 
-token	get_token(char **m);
-token	new_token(token *t, unsigned int a, unsigned int b);
-int		check_valid(char **m, token *t);
+typedef struct		s_game
+{
+	char			**map;
+	char			**piece;
+	int				i;
+	int				player;
+	int				x_piece;
+	int				y_piece;
+	int				x_board;
+	int				y_board;
+}					t_game;
+
+t_token	get_token(char **m);
+t_token	store_map(char **file);
+int		check_valid(char **m, t_token *t);
 int		get_player(char **m, char *p);
-char	**fill_token(char **m, int x, int y, int i);
-char	**store_map(char **file);
+char	**fill_token(char **m, unsigned int x, int *i);
+char	**get_map(char **file, unsigned int x, int i);
 char	*find_start_pos(char **m, char c);
-void	overwrite_prev(char c);
 void	get_x_y(char *l, unsigned int *x, unsigned int *y);
-void	store_piece(char *l, token *t, int *i);
+t_game	play_game(t_game g);
 
 #endif

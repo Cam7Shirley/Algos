@@ -6,41 +6,31 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 07:06:30 by cshirley          #+#    #+#             */
-/*   Updated: 2018/08/06 11:08:08 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/08/20 08:39:13 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-token	new_token(token *t, unsigned int a, unsigned int b)
+char	**fill_token(char **m, unsigned int x, int *i)
 {
-	t->x = a;
-	t->y = b;
-	return (*t);
-}
+	char			*temp;
+	char			**tkn = NULL;
+	unsigned int	index;
 
-char	**fill_token(char **m, int x, int y, int i)
-{
-	char	**tkn;
-	char	*line;
-	int		indexx;
-	int		indexy;
-
-	indexx = 0;
-	indexy = 0;
-	while (indexx < x)
+	index = 0;
+	tkn = (char**)(malloc(sizeof(*tkn) * x));
+	while (m[*i])
 	{
-		line = ft_strnew(0);
-		line = ft_strjoin(line, m[i]);
-		while (indexy < y)
+		temp = ft_strnew(0);
+		temp = ft_strjoin(temp, m[*i]);
+		if (index < x)
 		{
-			tkn[indexx][indexy] = line[indexy];
-			indexy++;
+			tkn[index] = ft_strnew(ft_strlen(temp));
+			tkn[index] = ft_strjoin(tkn[index], temp);
+			index++;
 		}
-		tkn[indexx][indexy] = '\0';
-		indexy = 0;
-		i++;
-		indexx++;
+		*i = *i + 1;
 	}
 	return (tkn);
 }
@@ -51,28 +41,26 @@ token	get_token(char **m)
 	char	*line;
 	char	**temp;
 	int		index;
-	int		i;
 
-	tkn = new_token(&tkn, 0, 0);
 	index = 0;
-	i = 0;
 	while (m[index])
 	{
 		line = ft_strnew(0);
 		line = ft_strjoin(line, m[index]);
-		if (line[0] == 'P' && (line = ft_strstr(line, "Piece")))
+		if (line[0] == 'P' && ft_strstr(line, "Piece"))
 		{
 			temp = ft_strsplit(line, ' ');
 			tkn.x = ft_atoi(temp[1]);
 			tkn.y = ft_atoi(temp[2]);
 		}
-		if (tkn.x == 0 && tkn.y == 0)
+		if (tkn.x != 0 && tkn.y != 0)
+		{
 			index++;
-		else
 			break ;
+		}
+		index++;
 	}
-	index++;
-	tkn.piece = fill_token(m, tkn.x, tkn.y, index);
+	tkn.piece = fill_token(m, tkn.x, &index);
 	return (tkn);
 }
 

@@ -6,66 +6,60 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 08:03:20 by cshirley          #+#    #+#             */
-/*   Updated: 2018/08/06 11:15:56 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/08/20 10:28:46 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-//char	*find_start_pos(char **m, char c)
-//{
-//}
-
-void	get_x_y(char *l, unsigned int *x, unsigned int *y)
+char	**get_map(char **file, unsigned int x, int i)
 {
-	char	**temp;
+	unsigned int	index;
+	char			*line;
+	char			**map = NULL;
 
-	temp = ft_strsplit(l, ' ');
-	*x = ft_atoi(temp[1]);
-	*y = ft_atoi(temp[2]);
+	index = 0;
+	map = (char**)(malloc(sizeof(*map) * x));
+	while (file[i])
+	{
+		line = ft_strnew(0);
+		line = ft_strjoin(line, file[i]);
+		if (index < x && ft_isdigit(line[0]))
+		{
+			map[index] = ft_strnew(0);
+			map[index] = ft_strjoin(map[index], &line[4]);
+			index++;
+		}
+		i++;
+	}
+	return (map);
 }
 
-void	store_piece(char *l, token *t, int *i)
+token	store_map(char **file)
 {
-	if ((l = ft_strstr(l, ".")) && ft_strlen(l) == t->y)
-	{
-		t->piece[*i] = ft_strnew(0);
-		t->piece[*i] = ft_strjoin(t->piece[*i], l);
-	}
-	else if ((l = ft_strstr(l, "O")) && ft_strlen(l) == t->y)
-	{
-		t->piece[*i] = ft_strnew(0);
-		t->piece[*i] = ft_strjoin(t->piece[*i], l);
-	}
-	else if ((l = ft_strstr(l, "X")) && ft_strlen(l) == t->y)
-	{
-		t->piece[*i] = ft_strnew(0);
-		t->piece[*i] = ft_strjoin(t->piece[*i], l);
-	}
-	*i = *i + 1;
-}
-
-char	**store_map(char **file)
-{
-	int		index;
-	int		map_index;
-	char	*line;
 	token	map;
+	char	*line;
+	char	**temp;
+	int		index;
 
-	map = new_token(&map, 0, 0);
-	map_index = 0;
+	index = 0;
 	while (file[index])
 	{
 		line = ft_strnew(0);
 		line = ft_strjoin(line, file[index]);
-		if (line[0] == 'P' && (line = ft_strstr(line, "Plateau")))
-			get_x_y(line, &(map.x), &(map.y));
-		store_piece(line, &map, &map_index);
+		if (line[0] == 'P' && ft_strstr(line, "Plateau"))
+		{
+			temp = ft_strsplit(line, ' ');
+			map.x = ft_atoi(temp[1]);
+			map.y = ft_atoi(temp[2]);
+		}
+		if (map.x != 0 && map.y != 0)
+		{
+			index += 2;
+			break ;
+		}
 		index++;
 	}
-	return (map.piece);
-}
-
-void	overwrite_prev(char c)
-{
+	map.piece = get_map(file, map.x, index);
+	return (map);
 }
