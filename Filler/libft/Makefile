@@ -6,7 +6,7 @@
 #    By: cshirley <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/23 07:51:02 by cshirley          #+#    #+#              #
-#    Updated: 2018/07/23 13:31:39 by cshirley         ###   ########.fr        #
+#    Updated: 2018/08/28 08:21:04 by cshirley         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ all: $(NAME)
 
 clean:
 	rm -f $(OBJ)
-	rm *.gch
 
 fclean: clean
 	rm -f $(NAME)

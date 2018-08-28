@@ -5,38 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/02 14:13:16 by cshirley          #+#    #+#             */
-/*   Updated: 2018/08/20 08:31:30 by cshirley         ###   ########.fr       */
+/*   Created: 2018/08/28 08:12:36 by cshirley          #+#    #+#             */
+/*   Updated: 2018/08/28 08:47:31 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int get_player(char **m, char *p)
+t_game	get_player(t_game g, char *line)
 {
-	char    *temp;
-	char    *line;
-	char    *play;
-	int     player;
-	int     index;
-	
-	index = 0;
-	player = 0;
-	temp = ft_strnew(ft_strlen(p));
-	while (m[index])
+	get_next_line(0, &line);
+	if (line[0] == '$')
 	{
-		line = ft_strnew(0);
-		line = ft_strjoin(line, m[index]);
-		if (line[0] == '$')
-		{
-			if ((play = ft_strstr(line, "p1")) && (temp = ft_strstr(line, p)))
-				player = 1;
-			else if ((play = ft_strstr(line, "p2")) && (temp = ft_strstr(line, p)))
-				player = 2;
-		}
-		if (player != 0)
-			return (player);
-		index++;
+		if (ft_strstr(line, "p1"))
+			g.player = 1;
+		else if (ft_strstr(line, "p2"))
+			g.player = 2;
 	}
-	return (player);
+	return (g);
 }

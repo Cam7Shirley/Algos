@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   piece.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/23 11:56:13 by cshirley          #+#    #+#             */
-/*   Updated: 2018/08/28 12:11:58 by cshirley         ###   ########.fr       */
+/*   Created: 2018/08/28 06:36:52 by cshirley          #+#    #+#             */
+/*   Updated: 2018/08/28 12:22:43 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int	main(void)
+t_game	store_piece(t_game g, char *line)
 {
-	char	*line;
-	t_game	session;
 	int		index;
 
 	index = 0;
-	line = ft_strnew(0);
-	session.i = 0;
-	session = get_player(session, line);
-	session = store_map(session, line);
-	session = store_piece(session, line);
-	return (0);
+	g.piece = (char**)(malloc(g.x_piece * sizeof(char*)));
+	while (index < g.x_piece)
+	{
+		g.piece[index] = (char*)(malloc(g.y_piece * sizeof(char)));
+		index++;
+	}
+	index = 0;
+	while (1)
+	{
+		if (get_next_line(0, &line) > 0)
+		{
+			dprintf(2, "Piece: %s\n", line);
+			g.piece[index] = ft_strjoin(g.piece[index], line);
+			index++;
+		}
+		else
+			break ;
+	}
+	return (g);
 }

@@ -6,7 +6,7 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 13:29:59 by cshirley          #+#    #+#             */
-/*   Updated: 2018/08/20 12:37:26 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/08/28 11:49:24 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FILLER_H
 # include "./libft/libft.h"
 # include <fcntl.h>
+# include <stdio.h>
 
 typedef struct		s_token
 {
@@ -34,14 +35,10 @@ typedef struct		s_game
 	int				y_board;
 }					t_game;
 
-t_token	get_token(char **m);
-t_token	store_map(char **file);
-int		check_valid(char **m, t_token *t);
-int		get_player(char **m, char *p);
-char	**fill_token(char **m, unsigned int x, int *i);
-char	**get_map(char **file, unsigned int x, int i);
-char	*find_start_pos(char **m, char c);
-void	get_x_y(char *l, unsigned int *x, unsigned int *y);
-t_game	play_game(t_game g);
+t_game	play_game(t_game g, char *line);
+t_game	get_player(t_game g, char *line);
+t_game	get_map(t_game g, char *line);
+t_game	store_map(t_game g, char *line);
+t_game	store_piece(t_game g, char *line);
 
 #endif
