@@ -33,6 +33,8 @@ typedef struct		s_game
 	int				y_piece;
 	int				x_board;
 	int				y_board;
+	int				x_placer;
+	int				y_placer;
 }					t_game;
 
 t_game	play_game(t_game g, char *line);
@@ -40,5 +42,6 @@ t_game	get_player(t_game g, char *line);
 t_game	get_map(t_game g, char *line);
 t_game	store_map(t_game g, char *line);
 t_game	store_piece(t_game g, char *line);
+t_game	find_shape(t_game g);
 
 #endif
