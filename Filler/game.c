@@ -6,7 +6,7 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 12:02:43 by cshirley          #+#    #+#             */
-/*   Updated: 2018/08/28 08:14:20 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/08/30 07:50:17 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,10 @@ t_game	find_shape(t_game g)
 		iy = 0;
 	}
 	return (g);
+}
+
+void	place_piece(t_game g)
+{
+	dprintf(2, "X: %d", g.x_placer);
+	dprintf(1, "%d %d\n", g.x_placer, g.y_placer);
 }
