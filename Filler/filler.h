@@ -37,8 +37,11 @@ typedef struct		s_game
 	int				y_placer;
 }					t_game;
 
-int		check_valid(t_game g);
-int		more_validity(t_game g, int *x, int *y);
+int		check_valid(t_game g, int x, int y);
+int		find_x_coord(t_game g);
+int		find_y_coord(t_game g);
+int		check_x_diff(t_game g, int xp, int yp);
+void	more_validity(t_game g, int *x, int *y, int *c);
 void	place_piece(t_game g);
 t_game	play_game(t_game g, char *line);
 t_game	get_player(t_game g, char *line);

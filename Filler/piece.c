@@ -17,68 +17,85 @@ t_game	store_piece(t_game g, char *line)
 	int		index;
 
 	index = 0;
-	g.piece = (char**)(malloc(g.x_piece * sizeof(char*)));
+	g.piece = (char**)(malloc(g.x_piece + 1 * sizeof(char*)));
 	while (index < g.x_piece)
 	{
 		g.piece[index] = (char*)(malloc(g.y_piece * sizeof(char)));
 		index++;
 	}
 	index = 0;
-	while (1)
+	while (index < g.x_piece)
 	{
-		if (get_next_line(0, &line) > 0)
-		{
-			g.piece[index] = ft_strjoin(g.piece[index], line);
-			index++;
-		}
-		else
-			break ;
+		get_next_line(0, &line);
+		g.piece[index] = ft_strjoin(g.piece[index], line);
+		index++;
 	}
 	return (g);
 }
 
-int		more_validity(t_game g, int *x, int *y)
+int		check_x_diff(t_game g, int xp, int yp)
 {
-	int	count;
+	int	mx;
+	int	my;
+	int	ix;
+	int	iy;
 
-	count = 0;
-	if (g.player == 1)
+	mx = g.x_placer + g.x_piece;
+	my = g.y_placer + g.y_piece;
+	ix = 0;
+	while (xp < (mx - 1))
 	{
-		if ((g.piece[*x][*y] == 'O' || g.piece[*x][*y] == 'o') && count == 0)
-			count++;
-		else if ((g.piece[*x][*y] == 'O' || g.piece[*x][*y] == 'o') && count > 0)
-			return (0);
-		*y = *y + 1;
+		iy = 0;
+		while (yp < (my - 1))
+		{
+			if (g.piece[ix][iy] == '*')
+			{
+				g.y_placer = g.y_placer - iy;
+				return (g.x_placer - (xp - g.x_placer));
+			}
+			iy++;
+			yp++;
+		}
+		yp = g.y_placer;
+		xp++;
 	}
-	else if (g.player == 2)
-	{
-		if ((g.piece[*x][*y] == 'X' || g.piece[*x][*y] == 'x') && count == 0)
-			count++;
-		else if ((g.piece[*x][*y] == 'X' || g.piece[*x][*y] == 'x') && count > 0)
-			return (0);
-		*y = *y + 1;
-	}
-	return (1);
+	return (0);
 }
 
-int		check_valid(t_game g)
+int		check_valid(t_game g, int x, int y)
 {
 	int	ix;
 	int	iy;
+	int	mx;
+	int	my;
 	int	count;
 
 	ix = 0;
-	iy = 0;
 	count = 0;
-	while (ix < g.x_piece)
+	mx = x + g.x_piece;
+	my = y + g.y_piece;
+	while (x < (mx - 1))
 	{
-		while (iy < g.y_piece)
-		{
-			if (more_validity(g, &ix, &iy) == 0)
-				return (0);
-		}
 		iy = 0;
-		ix++;
+		while (y < (my - 1))
+		{
+			if (g.player == 1)
+			{
+				if (g.piece[ix][iy] == '*' && (g.map[x][y] == '0' || g.map[x][y] == 'o'))
+					count++;
+			}
+			else if (g.player == 2)
+			{
+				if (g.piece[ix][iy] == '*' && (g.map[x][y] == 'X' || g.map[x][y] == 'x'))
+					count++;
+			}
+			iy++;
+			y++;
+		}
+		y = g.y_placer;
+		x++;
 	}
+	if (count != 1)
+		return (0);
 	return (1);
 }

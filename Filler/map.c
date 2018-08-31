@@ -64,3 +64,17 @@ t_game	store_map(t_game g, char *line)
 	g = get_map(g, line);
 	return (g);
 }
+
+int		find_x_coord(t_game g)
+{
+	int	num;
+
+	if ((num = check_x_diff(g, g.x_placer, g.y_placer)) > 0)
+		g.x_placer = num;
+	return (g.x_placer);
+}
+
+int		find_y_coord(t_game g)
+{
+	return (g.y_placer);
+}

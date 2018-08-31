@@ -27,7 +27,6 @@ t_game	find_shape(t_game g)
 			{
 				g.x_placer = ix;
 				g.y_placer = iy;
-				return (g);
 			}
 			else if ((g.map[ix][iy] == 'X' || g.map[ix][iy] == 'x') && g.player == 2)
 			{
@@ -44,6 +43,23 @@ t_game	find_shape(t_game g)
 
 void	place_piece(t_game g)
 {
-	dprintf(2, "X: %d", g.x_placer);
-	dprintf(1, "%d %d\n", g.x_placer, g.y_placer);
+	int	x;
+	int	y;
+
+	x = find_x_coord(g);
+	y = find_y_coord(g);
+	if (check_valid(g, x, y) == 1)
+	{
+		ft_putnbr(x);
+		ft_putchar(' ');
+		ft_putnbr(y);
+		ft_putchar('\n');
+	}
+	else
+	{
+		ft_putnbr(0);
+		ft_putchar(' ');
+		ft_putnbr(0);
+		ft_putchar('\n');
+	}
 }
