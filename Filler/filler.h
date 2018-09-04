@@ -6,7 +6,7 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 13:29:59 by cshirley          #+#    #+#             */
-/*   Updated: 2018/08/30 07:00:29 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/09/04 06:42:24 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ typedef struct		s_game
 	int				y_placer;
 }					t_game;
 
-int		check_valid(t_game g, int x, int y);
+int		check_map_validity(t_game g, int x, int y);
+//int		check_count_validity(t_game g, int x, int y);
 int		find_x_coord(t_game g);
 int		find_y_coord(t_game g);
-int		check_x_diff(t_game g, int xp, int yp);
+int		check_x_diff_one(t_game g, int xp, int yp);
+//int		check_x_diff_two(t_game g, int xp, int yp);
 void	more_validity(t_game g, int *x, int *y, int *c);
 void	place_piece(t_game g);
 t_game	play_game(t_game g, char *line);

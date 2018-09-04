@@ -6,7 +6,7 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 06:36:52 by cshirley          #+#    #+#             */
-/*   Updated: 2018/08/30 07:13:55 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/09/04 06:42:38 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_game	store_piece(t_game g, char *line)
 	return (g);
 }
 
-int		check_x_diff(t_game g, int xp, int yp)
+int		check_x_diff_one(t_game g, int xp, int yp)
 {
 	int	mx;
 	int	my;
@@ -48,7 +48,7 @@ int		check_x_diff(t_game g, int xp, int yp)
 		iy = 0;
 		while (yp < (my - 1))
 		{
-			if (g.piece[ix][iy] == '*')
+			if (g.piece[ix][iy] == '*' && (g.map[xp][yp] == 'O' || g.map[xp][yp] == 'o'))
 			{
 				g.y_placer = g.y_placer - iy;
 				return (g.x_placer - (xp - g.x_placer));
@@ -62,40 +62,15 @@ int		check_x_diff(t_game g, int xp, int yp)
 	return (0);
 }
 
-int		check_valid(t_game g, int x, int y)
+/*int		check_x_diff_two(t_game g, int xp, int yp)
 {
-	int	ix;
-	int	iy;
-	int	mx;
-	int	my;
-	int	count;
-
-	ix = 0;
-	count = 0;
-	mx = x + g.x_piece;
-	my = y + g.y_piece;
-	while (x < (mx - 1))
-	{
-		iy = 0;
-		while (y < (my - 1))
-		{
-			if (g.player == 1)
-			{
-				if (g.piece[ix][iy] == '*' && (g.map[x][y] == '0' || g.map[x][y] == 'o'))
-					count++;
-			}
-			else if (g.player == 2)
-			{
-				if (g.piece[ix][iy] == '*' && (g.map[x][y] == 'X' || g.map[x][y] == 'x'))
-					count++;
-			}
-			iy++;
-			y++;
-		}
-		y = g.y_placer;
-		x++;
-	}
-	if (count != 1)
-		return (0);
-	return (1);
 }
+
+int		check_map_validity(t_game g, int x, int y)
+{
+}
+
+int		check_count_validity(t_game g, int x, int y)
+{
+}
+*/

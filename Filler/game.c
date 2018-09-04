@@ -6,7 +6,7 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 12:02:43 by cshirley          #+#    #+#             */
-/*   Updated: 2018/08/30 07:50:17 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/09/04 07:03:38 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	place_piece(t_game g)
 
 	x = find_x_coord(g);
 	y = find_y_coord(g);
-	if (check_valid(g, x, y) == 1)
+	if (x != 0 && y != 0)
 	{
 		ft_putnbr(x);
 		ft_putchar(' ');
