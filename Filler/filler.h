@@ -6,7 +6,7 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 13:29:59 by cshirley          #+#    #+#             */
-/*   Updated: 2018/09/04 06:42:24 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/09/11 11:18:09 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,6 @@
 # include "./libft/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
-
-typedef struct		s_token
-{
-	char			**piece;
-	unsigned int	x;
-	unsigned int	y;
-}					t_token;
 
 typedef struct		s_game
 {
@@ -37,13 +30,15 @@ typedef struct		s_game
 	int				y_placer;
 }					t_game;
 
+int		check_validity(t_game g);
 int		check_map_validity(t_game g, int x, int y);
-//int		check_count_validity(t_game g, int x, int y);
+int		check_piece_placement(t_game g, int x, int y);
+int		check_pos(int p, char c1, char c2);
 int		find_x_coord(t_game g);
 int		find_y_coord(t_game g);
-int		check_x_diff_one(t_game g, int xp, int yp);
-//int		check_x_diff_two(t_game g, int xp, int yp);
-void	more_validity(t_game g, int *x, int *y, int *c);
+t_game	find_placement_one(t_game g, int xp, int yp);
+t_game	find_placement_two(t_game g, int xp, int yp);
+//void	more_validity(t_game g, int *x, int *y, int *c);
 void	place_piece(t_game g);
 t_game	play_game(t_game g, char *line);
 t_game	get_player(t_game g, char *line);
@@ -51,5 +46,6 @@ t_game	get_map(t_game g, char *line);
 t_game	store_map(t_game g, char *line);
 t_game	store_piece(t_game g, char *line);
 t_game	find_shape(t_game g);
+t_game	find_new_shape(t_game g);
 
 #endif

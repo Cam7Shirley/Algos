@@ -6,7 +6,7 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 08:06:54 by cshirley          #+#    #+#             */
-/*   Updated: 2018/09/04 06:43:08 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/09/11 12:47:50 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,15 @@ t_game	store_map(t_game g, char *line)
 
 int		find_x_coord(t_game g)
 {
-	int	num;
-
-	if (g.player == 1 && (num = check_x_diff_one(g, g.x_placer, g.y_placer)) > 0)
-		g.x_placer = num;
-	//else if (g.player == 2 && (num = check_x_diff_two(g, g.x_placer, g.y_placer)) > 0)
-		//g.x_placer = num;
-	return (g.x_placer);
+	if (g.x_placer >= 0)
+		return (g.x_placer);
+	else
+		return (-1);
 }
 
 int		find_y_coord(t_game g)
 {
-	if (g.y_placer > 0)
+	if (g.y_placer >= 0)
 		return (g.y_placer);
 	else
 		return (-1);

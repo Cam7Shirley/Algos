@@ -6,12 +6,12 @@
 #    By: cshirley <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/23 09:16:13 by cshirley          #+#    #+#              #
-#    Updated: 2018/08/28 08:20:00 by cshirley         ###   ########.fr        #
+#    Updated: 2018/09/11 10:53:15 by cshirley         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = filler
-SRCS = main.c player.c piece.c map.c game.c
+SRCS = main.c player.c piece.c map.c game.c valid.c
 FLAGS = -Wall -Wextra -Werror -o
 
 all: $(NAME)

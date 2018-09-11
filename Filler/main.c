@@ -6,7 +6,7 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 11:56:13 by cshirley          #+#    #+#             */
-/*   Updated: 2018/08/30 07:34:52 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/09/11 12:26:56 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,15 @@ int	main(void)
 	line = ft_strnew(0);
 	session.i = 0;
 	session = get_player(session, line);
-	session = store_map(session, line);
-	session = store_piece(session, line);
-	session = find_shape(session);
-	place_piece(session);
+	while (1)
+	{
+		session = store_map(session, line);
+		session = store_piece(session, line);
+		session = find_shape(session);
+		if (check_validity(session) == 1)
+			place_piece(session);
+		else
+			break ;
+	}
 	return (0);
 }

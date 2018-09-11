@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header.h                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 07:39:50 by cshirley          #+#    #+#             */
-/*   Updated: 2018/09/11 06:52:26 by cshirley         ###   ########.fr       */
+/*   Created: 2018/09/11 06:52:33 by cshirley          #+#    #+#             */
+/*   Updated: 2018/09/11 08:08:48 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_H
-#define HEADER_H
-# include <fcntl.h>
+#include "header.h"
 
-typedef	struct		s_room
+int	main(int argc, char **argv)
 {
-	unsigned int	x_farm;
-	unsigned int	y_farm;
-}					t_room;
+	int	num_ants;
 
-#endif
+}

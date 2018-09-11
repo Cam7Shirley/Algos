@@ -6,7 +6,7 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 12:02:43 by cshirley          #+#    #+#             */
-/*   Updated: 2018/09/04 07:03:38 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/09/11 12:51:35 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,53 @@ t_game	find_shape(t_game g)
 	return (g);
 }
 
+t_game	find_new_shape(t_game g)
+{
+	int	index_x;
+	int	index_y;
+
+	index_x = g.x_placer + 1;
+	index_y = g.y_placer + 1;
+	while (index_x < g.x_board)
+	{
+		while (index_y < g.y_board)
+		{
+			if (g.player == 1)
+			{
+				if (g.map[index_x][index_y] == 'O' || g.map[index_x][index_y] == 'o')
+				{
+					g.x_placer = index_x;
+					g.y_placer = index_y;
+				}
+			}
+			else if (g.player == 2)
+			{
+				if (g.map[index_x][index_y] == 'X' || g.map[index_x][index_y] == 'x')
+				{
+					g.x_placer = index_x;
+					g.y_placer = index_y;
+				}
+			}
+			index_y++;
+		}
+		index_x++;
+		index_y = 0;
+	}
+	return (g);
+}
+
 void	place_piece(t_game g)
 {
 	int	x;
 	int	y;
 
+	if (g.player == 1)
+		g = find_placement_one(g, g.x_placer, g.y_placer);
+	else if (g.player == 2)
+		g = find_placement_two(g, g.x_placer, g.y_placer);
 	x = find_x_coord(g);
 	y = find_y_coord(g);
-	if (x != 0 && y != 0)
+	if (x >= 0 && y >= 0)
 	{
 		ft_putnbr(x);
 		ft_putchar(' ');
