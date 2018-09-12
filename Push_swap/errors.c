@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int	check_duplicates(int *d, int n)
+void	check_duplicates(int *d, int n)
 {
 	int	index1;
 	int	index2;
@@ -12,11 +12,10 @@ int	check_duplicates(int *d, int n)
 		while (index2 < n - 1)
 		{
 			if (d[index1] == d[index2])
-				return (1);
+				ft_putendl_fd("Error", 2);
 			index2++;
 		}
 		index1++;
 		index2 = index1 + 1;
 	}
-	return (0);
 }
