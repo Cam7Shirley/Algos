@@ -2,14 +2,14 @@
 
 int	main(int argc, char **argv)
 {
-	unsigned int	count;
-	unsigned int	index;
+	int		count;
+	int		index;
 	int		*data;
 
 	index = 0;
 	count = argc - 1;
 	data = (int*)malloc(argc - 1);
-	while (count > 0)
+	while (index < argc - 1)
 	{
 		if (ft_atoi(argv[count])) 
 		{

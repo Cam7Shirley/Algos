@@ -1,5 +1,5 @@
 NAME = push_swap
-SRCS = main.c errors.c stack.c push_swap.c funcs.c tasks.c
+SRCS = main.c errors.c stack.c push_swap.c funcs_a.c funcs_b.c algo.c algo_b.c
 FLAGS = -Wall -Wextra -Werror -o
 
 all: $(NAME)
