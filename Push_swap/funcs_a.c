@@ -21,6 +21,8 @@ void	push_a(t_stack *st_a, t_stack *st_b)
 		temp = st_b->data[st_b->top - 1];
 		st_b->data[st_b->top - 1] = 0;
 		st_b->top--;
+		if (st_b->top == 0)
+			st_b->top = -1;
 		st_a->data[st_a->top] = temp;
 		st_a->top++;
 	}

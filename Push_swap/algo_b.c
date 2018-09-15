@@ -16,10 +16,11 @@ int		find_b_highest(t_stack *st_b, int n)
 {
 	int	index;
 	int	high;
-	int pos;
+	int	pos;
 
 	index = 0;
-	pos = 0;
+	pos = -1;
+	high = -2147483648;
 	while (index < n)
 	{
 		if (st_b->data[index] > high)
@@ -46,7 +47,8 @@ void	find_b_lowest(t_stack *st_b, int n)
 	int	pos;
 
 	index = 0;
-	pos = 0;
+	pos = -1;
+	low = 2147483647;
 	while (index < n)
 	{
 		if (st_b->data[index] < low)
@@ -60,16 +62,16 @@ void	find_b_lowest(t_stack *st_b, int n)
 		rotate_b(st_b);
 }
 
-int		check_sorted_b(t_stack *st_b)
+int		check_sorted_st(t_stack *st)
 {
 	int	index;
 	int	sorted;
 
 	index = 0;
 	sorted = 1;
-	while (index < st_b->top - 1 && sorted == 1)
+	while (index < st->top - 1 && sorted == 1)
 	{
-		if (st_b->data[index] < st_b->data[index + 1] && index < st_b->top - 2)
+		if (st->data[index] < st->data[index + 1])
 			sorted = 1;
 		else
 			sorted = 0;
@@ -88,8 +90,8 @@ void	check_b(t_stack *st_a, t_stack *st_b)
 	flag = 1;
 	while (flag == 1)
 	{
-		find_b_lowest(st_b, st_b->top - 1);
-		if (find_b_highest(st_b, st_b->top - 1) == 1)
+		find_b_lowest(st_b, st_b->top);
+		if (find_b_highest(st_b, st_b->top) == 1)
 			push_a(st_a, st_b);
 		else if (st_b->data[st_b->top - 1] < st_b->data[st_b->top - 2])
 			swap_b(st_b);
