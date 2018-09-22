@@ -6,7 +6,7 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 13:29:59 by cshirley          #+#    #+#             */
-/*   Updated: 2018/09/11 11:18:09 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/09/22 11:02:34 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,14 @@ typedef struct		s_game
 {
 	char			**map;
 	char			**piece;
+	char			player;
+	char			opp;
+	int				**score;
 	int				i;
-	int				player;
+	int				x_play;
+	int				y_play;
+	int				x_opp;
+	int				y_opp;
 	int				x_piece;
 	int				y_piece;
 	int				x_board;
@@ -45,7 +51,7 @@ t_game	get_player(t_game g, char *line);
 t_game	get_map(t_game g, char *line);
 t_game	store_map(t_game g, char *line);
 t_game	store_piece(t_game g, char *line);
-t_game	find_shape(t_game g);
+t_game	find_pos(t_game g);
 t_game	find_new_shape(t_game g);
 
 #endif

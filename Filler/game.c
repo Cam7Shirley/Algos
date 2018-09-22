@@ -6,13 +6,13 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 12:02:43 by cshirley          #+#    #+#             */
-/*   Updated: 2018/09/11 12:51:35 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/09/22 11:01:58 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-t_game	find_shape(t_game g)
+t_game	find_pos(t_game g)
 {
 	int	ix;
 	int	iy;
@@ -23,12 +23,7 @@ t_game	find_shape(t_game g)
 	{
 		while (iy < g.y_board)
 		{
-			if ((g.map[ix][iy] == 'O' || g.map[ix][iy] == 'o') && g.player == 1)
-			{
-				g.x_placer = ix;
-				g.y_placer = iy;
-			}
-			else if ((g.map[ix][iy] == 'X' || g.map[ix][iy] == 'x') && g.player == 2)
+			if (g.map[ix][iy] == g.player || g.map[ix][iy] == g.player + 32)
 			{
 				g.x_placer = ix;
 				g.y_placer = iy;
@@ -38,6 +33,7 @@ t_game	find_shape(t_game g)
 		ix++;
 		iy = 0;
 	}
+	dprintf(2, "X Pos: %d\t Y Pos: %d\n", g.x_placer, g.y_placer);
 	return (g);
 }
 
