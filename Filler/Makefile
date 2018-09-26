@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = filler
-SRCS = main.c player.c piece.c map.c game.c valid.c
+SRCS = main.c player.c piece.c map.c game.c valid.c score.c
 FLAGS = -Wall -Wextra -Werror -o
 
 all: $(NAME)

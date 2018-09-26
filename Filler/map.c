@@ -21,22 +21,20 @@ t_game	get_map(t_game g, char *line)
 	while (1)
 	{
 		get_next_line(0, &line);
+		if (line[0] == 'P')
 		{
-			if (line[0] == 'P')
-			{
-				temp = ft_strsplit(line, ' ');
-				g.x_piece = ft_atoi(temp[1]);
-				g.y_piece = ft_atoi(temp[2]);
-				break ;
-			}
-			if (index < g.x_board)
-			{
-				g.map[index] = ft_strjoin(g.map[index], &line[4]);
-				index++;
-			}
-			else
-				break ;
+			temp = ft_strsplit(line, ' ');
+			g.x_piece = ft_atoi(temp[1]);
+			g.y_piece = ft_atoi(temp[2]);
+			break ;
 		}
+		if (index < g.x_board)
+		{
+			g.map[index] = ft_strjoin(g.map[index], &line[4]);
+			index++;
+		}
+		else
+			break ;
 	}
 	return (g);
 }

@@ -33,61 +33,19 @@ t_game	find_pos(t_game g)
 		ix++;
 		iy = 0;
 	}
-	dprintf(2, "X Pos: %d\t Y Pos: %d\n", g.x_placer, g.y_placer);
-	return (g);
-}
-
-t_game	find_new_shape(t_game g)
-{
-	int	index_x;
-	int	index_y;
-
-	index_x = g.x_placer + 1;
-	index_y = g.y_placer + 1;
-	while (index_x < g.x_board)
-	{
-		while (index_y < g.y_board)
-		{
-			if (g.player == 1)
-			{
-				if (g.map[index_x][index_y] == 'O' || g.map[index_x][index_y] == 'o')
-				{
-					g.x_placer = index_x;
-					g.y_placer = index_y;
-				}
-			}
-			else if (g.player == 2)
-			{
-				if (g.map[index_x][index_y] == 'X' || g.map[index_x][index_y] == 'x')
-				{
-					g.x_placer = index_x;
-					g.y_placer = index_y;
-				}
-			}
-			index_y++;
-		}
-		index_x++;
-		index_y = 0;
-	}
+	g = alloc_score(g);
+	g = make_scores(g);
+	g = find_best_pos(g);
 	return (g);
 }
 
 void	place_piece(t_game g)
 {
-	int	x;
-	int	y;
-
-	if (g.player == 1)
-		g = find_placement_one(g, g.x_placer, g.y_placer);
-	else if (g.player == 2)
-		g = find_placement_two(g, g.x_placer, g.y_placer);
-	x = find_x_coord(g);
-	y = find_y_coord(g);
-	if (x >= 0 && y >= 0)
+	if (check_valid(g) == 1)
 	{
-		ft_putnbr(x);
+		ft_putnbr(g.x_placer);
 		ft_putchar(' ');
-		ft_putnbr(y);
+		ft_putnbr(g.y_placer);
 		ft_putchar('\n');
 	}
 	else

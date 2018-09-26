@@ -25,9 +25,6 @@ int	main(void)
 	session = store_map(session, line);
 	session = store_piece(session, line);
 	session = find_pos(session);
-	//if (check_validity(session) == 1)
-		//place_piece(session);
-	//else
-		//break ;
+	place_piece(session);
 	return (0);
 }

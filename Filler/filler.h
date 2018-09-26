@@ -12,6 +12,7 @@
 
 #ifndef FILLER_H
 # define FILLER_H
+# define MAX 100
 # include "./libft/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
@@ -24,8 +25,8 @@ typedef struct		s_game
 	char			opp;
 	int				**score;
 	int				i;
-	int				x_play;
-	int				y_play;
+	int				x_bound;
+	int				y_bound;
 	int				x_opp;
 	int				y_opp;
 	int				x_piece;
@@ -36,22 +37,21 @@ typedef struct		s_game
 	int				y_placer;
 }					t_game;
 
-int		check_validity(t_game g);
-int		check_map_validity(t_game g, int x, int y);
-int		check_piece_placement(t_game g, int x, int y);
-int		check_pos(int p, char c1, char c2);
+int		check_valid(t_game g);
+int		check_bounds(t_game g);
+int		check_placement(t_game g);
+int		is_placement(t_game g, int x, int y);
 int		find_x_coord(t_game g);
 int		find_y_coord(t_game g);
-t_game	find_placement_one(t_game g, int xp, int yp);
-t_game	find_placement_two(t_game g, int xp, int yp);
-//void	more_validity(t_game g, int *x, int *y, int *c);
 void	place_piece(t_game g);
-t_game	play_game(t_game g, char *line);
 t_game	get_player(t_game g, char *line);
 t_game	get_map(t_game g, char *line);
 t_game	store_map(t_game g, char *line);
 t_game	store_piece(t_game g, char *line);
 t_game	find_pos(t_game g);
-t_game	find_new_shape(t_game g);
+t_game	find_best_pos(t_game g);
+t_game	make_scores(t_game g);
+t_game	make_bounds(t_game g);
+t_game	alloc_score(t_game g);
 
 #endif
