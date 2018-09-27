@@ -53,8 +53,6 @@ int	check_valid(t_game g, int x, int y)
 {
 	if (check_bounds(g, x, y) == 0)
 		return (0);
-	else if (check_placement(g, x, y) == 0)
-		return (0);
 	else
-		return (1);
+		return (check_placement(g, x, y));
 }

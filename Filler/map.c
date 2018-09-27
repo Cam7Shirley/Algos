@@ -14,24 +14,8 @@
 
 t_game	make_scores(t_game g)
 {
-	//int	ix;
-	//int	iy;
-
-	//ix = 0;
 	g = assign_row_left(g);
 	g = assign_row_right(g);
-	/*while (ix < g.x_board)
-	{
-		iy = 0;
-		while (iy < g.y_board)
-		{
-			printf("%d ", g.score[ix][iy]);
-			iy++;
-		}
-		printf("\n");
-		ix++;
-	}
-	*/
 	return (g);
 }
 
