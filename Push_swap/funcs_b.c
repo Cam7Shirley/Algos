@@ -26,6 +26,7 @@ void	push_b(t_stack *st_a, t_stack *st_b)
 		st_b->data[st_b->top] = temp;
 		st_b->top++;
 	}
+	ft_putendl("pb");
 }
 
 void	swap_b(t_stack *st_b)
@@ -35,6 +36,7 @@ void	swap_b(t_stack *st_b)
 	temp = st_b->data[st_b->top - 1];
 	st_b->data[st_b->top - 1] = st_b->data[st_b->top - 2];
 	st_b->data[st_b->top - 2] = temp;
+	ft_putendl("sb");
 }
 
 void	rotate_b(t_stack *st_b)
@@ -50,6 +52,7 @@ void	rotate_b(t_stack *st_b)
 		index--;
 	}
 	st_b->data[index] = temp;
+	ft_putendl("rb");
 }
 
 void	rev_rotate_b(t_stack *st_b)
@@ -65,4 +68,5 @@ void	rev_rotate_b(t_stack *st_b)
 		index++;
 	}
 	st_b->data[index] = temp;
+	ft_putendl("rrb");
 }
