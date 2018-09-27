@@ -6,11 +6,34 @@
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 08:06:54 by cshirley          #+#    #+#             */
-/*   Updated: 2018/09/11 12:47:50 by cshirley         ###   ########.fr       */
+/*   Updated: 2018/09/27 12:59:16 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+t_game	make_scores(t_game g)
+{
+	//int	ix;
+	//int	iy;
+
+	//ix = 0;
+	g = assign_row_left(g);
+	g = assign_row_right(g);
+	/*while (ix < g.x_board)
+	{
+		iy = 0;
+		while (iy < g.y_board)
+		{
+			printf("%d ", g.score[ix][iy]);
+			iy++;
+		}
+		printf("\n");
+		ix++;
+	}
+	*/
+	return (g);
+}
 
 t_game	get_map(t_game g, char *line)
 {
@@ -61,20 +84,4 @@ t_game	store_map(t_game g, char *line)
 	}
 	g = get_map(g, line);
 	return (g);
-}
-
-int		find_x_coord(t_game g)
-{
-	if (g.x_placer >= 0)
-		return (g.x_placer);
-	else
-		return (-1);
-}
-
-int		find_y_coord(t_game g)
-{
-	if (g.y_placer >= 0)
-		return (g.y_placer);
-	else
-		return (-1);
 }

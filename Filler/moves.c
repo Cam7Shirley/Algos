@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cshirley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/23 11:56:13 by cshirley          #+#    #+#             */
-/*   Updated: 2018/09/27 13:35:16 by cshirley         ###   ########.fr       */
+/*   Created: 2018/09/27 06:58:45 by cshirley          #+#    #+#             */
+/*   Updated: 2018/09/27 13:32:20 by cshirley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int	main(void)
+int		move_placement(t_game *g)
 {
-	char	*line;
-	t_game	session;
+	int	ix;
+	int	iy;
+	int	m;
+	int	hiscore;
 
-	line = ft_strnew(0);
-	session.i = 0;
-	session = get_player(session, line);
-	while (1)
+	ix = 0;
+	hiscore = 0;
+	m = 0;
+	while (ix < g->x_board)
 	{
-		session = store_map(session, line);
-		session = store_piece(session, line);
-		session = find_opp(session);
-		if (move_placement(&session) == 0)
-			session.no_moves = 1;
-		place_piece(session);
-		if (session.destroy == 1)
-			break ;
+		iy = 0;
+		while (iy < g->y_board)
+		{
+			if (check_valid(*g, ix, iy) == 1 && hiscore < g->score[ix][iy])
+			{
+				g->x_placer = ix;
+				g->y_placer = iy;
+				hiscore = g->score[ix][iy];
+				m++;
+			}
+			iy++;
+		}
+		ix++;
 	}
-	return (0);
+	return ((m > 0) ? 1 : 0);
 }
